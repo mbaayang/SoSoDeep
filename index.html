@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <!-- reCAPTCHA API -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -40,105 +43,6 @@
             }
         }
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
-        }
-        
-        .service-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .testimonial-card {
-            transition: all 0.3s ease;
-        }
-        
-        .testimonial-card:hover {
-            transform: scale(1.03);
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #3B82F6;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover:after {
-            width: 100%;
-        }
-        
-        .btn-hover-effect {
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .btn-hover-effect:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #1D4ED8;
-            z-index: -1;
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: transform 0.3s ease;
-        }
-        
-        .btn-hover-effect:hover:after {
-            transform: scaleY(1);
-        }
-        
-        .language-selector {
-            transition: all 0.3s ease;
-        }
-        
-        .language-selector:hover {
-            transform: translateY(-2px);
-        }
-        
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .floating-reverse {
-            animation: float-reverse 5s ease-in-out infinite;
-        }
-        
-        .pulse-slow {
-            animation: pulse 5s infinite;
-        }
-        
-        .gradient-text {
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            background-image: linear-gradient(90deg, #3B82F6, #10B981);
-        }
-    </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Navigation -->
@@ -244,13 +148,13 @@
                     </div>
                 </div>
                 <div class="md:w-1/2 md:pl-12" data-aos="fade-left">
-                    <h3 class="text-2xl font-bold text-primary mb-4">Qui sommes-nous ?</h3>
+                    <h3 class="text-2xl font-bold text-dark mb-4">Qui sommes-nous ?</h3>
                     <p class="text-lg mb-6 text-gray-700">SoSoDeep est une agence spécialisée dans l'accompagnement des entreprises et particuliers vers la maîtrise de l'IA. Notre équipe d'experts allie pédagogie et expertise technique pour vous guider dans votre transformation numérique.</p>
                     
-                    <h3 class="text-2xl font-bold text-primary mb-4">Notre mission</h3>
+                    <h3 class="text-2xl font-bold text-dark mb-4">Notre mission</h3>
                     <p class="text-lg mb-6 text-gray-700">Démocratiser l'IA en la rendant concrète et applicable à tous les secteurs d'activité. Nous croyons que l'intelligence artificielle doit être accessible et bénéfique pour tous.</p>
                     
-                    <h3 class="text-2xl font-bold text-primary mb-4">Nos valeurs</h3>
+                    <h3 class="text-2xl font-bold text-dark mb-4">Nos valeurs</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="100">
                             <div class="flex items-center mb-2">
@@ -499,410 +403,360 @@
                 <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition" data-aos="flip-up" data-aos-delay="300">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">Avancé</span>
-                                <h3 class="text-xl font-bold mt-2">Développement IA</h3>
-                            </div>
-                            <div class="text-primary font-bold text-2xl">899€</div>
-                        </div>
-                        <p class="text-gray-600 mb-4">Formation technique pour développer vos propres modèles d'intelligence artificielle.</p>
-                        <div class="flex items-center text-sm text-gray-500 mb-4">
-                            <i class="far fa-clock mr-2"></i>
-                            <span>10 jours (70h)</span>
-                        </div>
-                        <div class="flex items-center text-sm text-gray-500 mb-6">
-                            <i class="fas fa-laptop mr-2"></i>
-                            <span>En ligne ou présentiel</span>
-                        </div>
-                        <ul class="space-y-2 text-gray-600 mb-6">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
-                                <span>Machine Learning avancé</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
-                                <span>Traitement du langage naturel</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
-                                <span>Vision par ordinateur</span>
-                            </li>
-                        </ul>
-                        <button class="w-full btn-hover-effect bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition duration-300 relative overflow-hidden">
-                            <span class="relative z-10">S'inscrire</span>
-                        </button>
-                    </div>
-                </div>
+            <div>
+                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">Avancé</span>
+                <h3 class="text-xl font-bold mt-2">Développement IA</h3>
             </div>
-            
-            <div class="text-center" data-aos="fade-up">
-                <p class="text-lg mb-6">Vous souhaitez une formation sur mesure pour votre entreprise ?</p>
-                <a href="#contact" class="btn-hover-effect bg-secondary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary-dark transition duration-300 inline-block relative overflow-hidden">
-                    <span class="relative z-10">Demander un devis</span>
-                </a>
-            </div>
+            <div class="text-primary font-bold text-2xl">899€</div>
         </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Ils nous font confiance</h2>
-                <div class="w-20 h-1 bg-secondary mx-auto"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="flex items-center mb-4">
-                        <div class="text-yellow-400 mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic mb-6">"La formation initiation à l'IA a complètement changé notre approche des projets digitaux. L'équipe de SoSoDeep a su rendre des concepts complexes accessibles à tous."</p>
-                    <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-bold">Aïda Diop</h4>
-                            <p class="text-gray-500 text-sm">Directrice Digitale, Banque Sénégalaise</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="flex items-center mb-4">
-                        <div class="text-yellow-400 mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic mb-6">"L'accompagnement stratégique de SoSoDeep nous a permis d'identifier 3 cas d'usage IA avec un ROI immédiat. Leur expertise sectorielle fait toute la différence."</p>
-                    <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-bold">Mamadou Ndiaye</h4>
-                            <p class="text-gray-500 text-sm">Directeur Général, AgroTech</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="flex items-center mb-4">
-                        <div class="text-yellow-400 mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic mb-6">"Nous avons fait appel à SoSoDeep pour former 50 collaborateurs. Leur approche pédagogique et les supports de formation sur mesure ont été très appréciés par nos équipes."</p>
-                    <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-bold">Fatou Bâ</h4>
-                            <p class="text-gray-500 text-sm">DRH, Groupe Santé Afrique</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <p class="text-gray-600 mb-4">Formation technique pour développer vos propres modèles d'intelligence artificielle.</p>
+        <div class="flex items-center text-sm text-gray-500 mb-4">
+            <i class="far fa-clock mr-2"></i>
+            <span>10 jours (70h)</span>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Contactez-nous</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Prêt à plonger dans l'IA ? Discutons de votre projet.</p>
-                <div class="w-20 h-1 bg-secondary mx-auto mt-4"></div>
-            </div>
-            
-            <div class="flex flex-col lg:flex-row gap-12">
-                <div class="lg:w-1/2" data-aos="fade-right">
-                    <form class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-gray-700 font-medium mb-2">Nom complet</label>
-                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-gray-700 font-medium mb-2">Téléphone</label>
-                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-gray-700 font-medium mb-2">Sujet</label>
-                            <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
-                                <option value="">Sélectionnez un sujet</option>
-                                <option value="consulting">Consulting en IA</option>
-                                <option value="training">Formation en IA</option>
-                                <option value="workshop">Organiser un workshop</option>
-                                <option value="other">Autre demande</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"></textarea>
-                        </div>
-                        <button type="submit" class="btn-hover-effect bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-primary-dark transition duration-300 w-full relative overflow-hidden">
-                            <span class="relative z-10">Envoyer le message</span>
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="lg:w-1/2" data-aos="fade-left">
-                    <div class="bg-gray-50 p-8 rounded-xl h-full">
-                        <h3 class="text-2xl font-bold text-primary mb-6">Nos coordonnées</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
-                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
-                                    <i class="fas fa-envelope text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Email</h4>
-                                    <a href="mailto:contact@sosodeep.com" class="text-gray-600 hover:text-primary transition">contact@sosodeep.com</a>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
-                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
-                                    <i class="fas fa-phone-alt text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Téléphone</h4>
-                                    <a href="tel:+221338765432" class="text-gray-600 hover:text-primary transition">+221 33 876 54 32</a>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
-                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
-                                    <i class="fas fa-map-marker-alt text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Adresse</h4>
-                                    <p class="text-gray-600">Immeuble Liberté, Dakar Plateau, Sénégal</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
-                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
-                                    <i class="fas fa-clock text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Horaires</h4>
-                                    <p class="text-gray-600">Lundi - Vendredi : 8h - 18h</p>
-                                    <p class="text-gray-600">Samedi : 9h - 13h</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8">
-                            <h4 class="font-bold mb-4">Suivez-nous</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8">
-                            <h4 class="font-bold mb-4">Prenez rendez-vous</h4>
-                            <p class="text-gray-600 mb-4">Planifiez une consultation en ligne avec nos experts.</p>
-                            <button class="btn-hover-effect bg-secondary text-white font-bold py-2 px-4 rounded-lg hover:bg-secondary-dark transition duration-300 inline-flex items-center relative overflow-hidden">
-                                <i class="far fa-calendar-alt mr-2"></i> <span class="relative z-10">Planifier un rendez-vous</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="flex items-center text-sm text-gray-500 mb-6">
+            <i class="fas fa-laptop mr-2"></i>
+            <span>En ligne ou présentiel</span>
         </div>
-    </section>
-
-    <!-- Map Section -->
-    <div class="h-96 w-full" data-aos="fade-up">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.71563585696!2d-17.4346829246879!3d14.67048547591115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec17248f0c136b5%3A0x515a56bcd5af097!2sDakar%20Plateau%2C%20Senegal!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <ul class="space-y-2 text-gray-600 mb-6">
+            <li class="flex items-start">
+                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                <span>Machine Learning avancé</span>
+            </li>
+            <li class="flex items-start">
+                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                <span>Traitement du langage naturel</span>
+            </li>
+            <li class="flex items-start">
+                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                <span>Vision par ordinateur</span>
+            </li>
+        </ul>
+        <button class="w-full btn-hover-effect bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition duration-300 relative overflow-hidden">
+            <span class="relative z-10">S'inscrire</span>
+        </button>
     </div>
+</div>
+</div>
 
-    <!-- Newsletter Section -->
-    <section class="py-16 bg-primary text-white" data-aos="fade-up">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-2">Restez informé</h3>
-                    <p class="opacity-90">Abonnez-vous à notre newsletter pour recevoir nos actualités et conseils en IA.</p>
-                </div>
-                <div class="md:w-1/2">
-                    <form class="flex flex-col sm:flex-row gap-4">
-                        <input type="email" placeholder="Votre email" class="flex-grow px-4 py-3 rounded-lg focus:outline-none text-gray-800 transition">
-                        <button type="submit" class="btn-hover-effect bg-secondary text-white font-bold py-3 px-6 rounded-lg hover:bg-secondary-dark transition duration-300 relative overflow-hidden">
-                            <span class="relative z-10">S'abonner</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
+<div class="text-center" data-aos="fade-up">
+    <p class="text-lg mb-6">Vous souhaitez une formation sur mesure pour votre entreprise ?</p>
+    <a href="#contact" class="btn-hover-effect bg-secondary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary-dark transition duration-300 inline-block relative overflow-hidden">
+        <span class="relative z-10">Demander un devis</span>
+    </a>
+</div>
+</div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Ils nous font confiance</h2>
+            <div class="w-20 h-1 bg-secondary mx-auto"></div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-gray-300 py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-                <div data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-primary text-white p-2 rounded-lg mr-3 hover:rotate-12 transition">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <span class="text-xl font-bold text-white">SoSoDeep</span>
-                    </div>
-                    <p class="mb-4">"Plongez dans l'IA, avec clarté et impact"</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="bg-white p-8 rounded-xl shadow-md testimonial-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="flex items-center mb-4">
+                    <div class="text-yellow-400 mr-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
                     </div>
                 </div>
-                
-                <div data-aos="fade-up" data-aos-delay="200">
-                    <h4 class="text-white font-bold mb-4 text-lg">Navigation</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="hover:text-white transition">Accueil</a></li>
-                        <li><a href="#about" class="hover:text-white transition">À propos</a></li>
-                        <li><a href="#services" class="hover:text-white transition">Services</a></li>
-                        <li><a href="#formations" class="hover:text-white transition">Formations</a></li>
-                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div data-aos="fade-up" data-aos-delay="300">
-                    <h4 class="text-white font-bold mb-4 text-lg">Services</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-white transition">Conseil en IA</a></li>
-                        <li><a href="#" class="hover:text-white transition">Formations</a></li>
-                        <li><a href="#" class="hover:text-white transition">Veille technologique</a></li>
-                        <li><a href="#" class="hover:text-white transition">Conférences</a></li>
-                        <li><a href="#" class="hover:text-white transition">Workshops</a></li>
-                    </ul>
-                </div>
-                
-                <div data-aos="fade-up" data-aos-delay="400">
-                    <h4 class="text-white font-bold mb-4 text-lg">Informations</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-white transition">Mentions légales</a></li>
-                        <li><a href="#" class="hover:text-white transition">Politique de confidentialité</a></li>
-                        <li><a href="#" class="hover:text-white transition">CGV</a></li>
-                        <li><a href="#" class="hover:text-white transition">FAQ</a></li>
-                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
-                    </ul>
+                <p class="text-gray-600 italic mb-6">"La formation initiation à l'IA a complètement changé notre approche des projets digitaux. L'équipe de SoSoDeep a su rendre des concepts complexes accessibles à tous."</p>
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-bold">Aïda Diop</h4>
+                        <p class="text-gray-500 text-sm">Directrice Digitale, Banque Sénégalaise</p>
+                    </div>
                 </div>
             </div>
             
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center" data-aos="fade-up">
-                <p>&copy; 2025 SoSoDeep. Tous droits réservés.</p>
+            <!-- Testimonial 2 -->
+            <div class="bg-white p-8 rounded-xl shadow-md testimonial-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="flex items-center mb-4">
+                    <div class="text-yellow-400 mr-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <p class="text-gray-600 italic mb-6">"L'accompagnement stratégique de SoSoDeep nous a permis d'identifier 3 cas d'usage IA avec un ROI immédiat. Leur expertise sectorielle fait toute la différence."</p>
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-bold">Mamadou Ndiaye</h4>
+                        <p class="text-gray-500 text-sm">Directeur Général, AgroTech</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="bg-white p-8 rounded-xl shadow-md testimonial-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="flex items-center mb-4">
+                    <div class="text-yellow-400 mr-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <p class="text-gray-600 italic mb-6">"Nous avons fait appel à SoSoDeep pour former 50 collaborateurs. Leur approche pédagogique et les supports de formation sur mesure ont été très appréciés par nos équipes."</p>
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-bold">Fatou Bâ</h4>
+                        <p class="text-gray-500 text-sm">DRH, Groupe Santé Afrique</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary-dark transform hover:-translate-y-1">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            offset: 100
-        });
-
-        // Mobile menu toggle
-        document.getElementById('menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-
-        // Back to top button
-        const backToTopButton = document.getElementById('back-to-top');
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Contactez-nous</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Prêt à plonger dans l'IA ? Discutons de votre projet.</p>
+            <div class="w-20 h-1 bg-secondary mx-auto mt-4"></div>
+        </div>
         
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.remove('opacity-100', 'visible');
-                backToTopButton.classList.add('opacity-0', 'invisible');
-            }
-        });
+        <div class="flex flex-col lg:flex-row gap-12">
+            <div class="lg:w-1/2" data-aos="fade-right">
+                <!-- Status message for contact form -->
+                <div id="contact-status" class="form-status"></div>
+                
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nom complet *</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email *</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-gray-700 font-medium mb-2">Téléphone</label>
+                        <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-gray-700 font-medium mb-2">Sujet *</label>
+                        <select id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                            <option value="">Sélectionnez un sujet</option>
+                            <option value="consulting">Consulting en IA</option>
+                            <option value="training">Formation en IA</option>
+                            <option value="workshop">Organiser un workshop</option>
+                            <option value="other">Autre demande</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 font-medium mb-2">Message *</label>
+                        <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"></textarea>
+                    </div>
+                    
+                    <!-- reCAPTCHA -->
+                    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                    
+                    <button type="submit" class="btn-hover-effect bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-primary-dark transition duration-300 w-full relative overflow-hidden">
+                        <span class="relative z-10">Envoyer le message</span>
+                    </button>
+                </form>
+            </div>
+            
+            <div class="lg:w-1/2" data-aos="fade-left">
+                <div class="bg-gray-50 p-8 rounded-xl h-full">
+                    <h3 class="text-2xl font-bold text-primary mb-6">Nos coordonnées</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
+                                <i class="fas fa-envelope text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Email</h4>
+                                <a href="mailto:contact@sosodeep.com" class="text-gray-600 hover:text-primary transition">contact@sosodeep.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
+                                <i class="fas fa-phone-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Téléphone</h4>
+                                <a href="tel:+221338765432" class="text-gray-600 hover:text-primary transition">+221 33 876 54 32</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Adresse</h4>
+                                <p class="text-gray-600">Immeuble Liberté, Dakar Plateau, Sénégal</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
+                                <i class="fas fa-clock text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Horaires</h4>
+                                <p class="text-gray-600">Lundi - Vendredi : 8h - 18h</p>
+                                <p class="text-gray-600">Samedi : 9h - 13h</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold mb-4">Suivez-nous</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold mb-4">Prenez rendez-vous</h4>
+                        <p class="text-gray-600 mb-4">Planifiez une consultation en ligne avec nos experts.</p>
+                        <button class="btn-hover-effect bg-secondary text-white font-bold py-2 px-4 rounded-lg hover:bg-secondary-dark transition duration-300 inline-flex items-center relative overflow-hidden">
+                            <i class="far fa-calendar-alt mr-2"></i> <span class="relative z-10">Planifier un rendez-vous</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<div class="h-96 w-full" data-aos="fade-up">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.71563585696!2d-17.4346829246879!3d14.67048547591115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec17248f0c136b5%3A0x515a56bcd5af097!2sDakar%20Plateau%2C%20Senegal!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+<!-- Newsletter Section -->
+<section class="py-16 bg-primary text-white" data-aos="fade-up">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h3 class="text-2xl font-bold mb-2">Restez informé</h3>
+                <p class="opacity-90">Abonnez-vous à notre newsletter pour recevoir nos actualités et conseils en IA.</p>
+            </div>
+            <div class="md:w-1/2">
+                <!-- Status message for newsletter form -->
+                <div id="newsletter-status" class="form-status"></div>
+                
+                <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" id="newsletter-email" name="email" placeholder="Votre email *" required class="flex-grow px-4 py-3 rounded-lg focus:outline-none text-gray-800 transition">
+                    <button type="submit" class="btn-hover-effect bg-secondary text-white font-bold py-3 px-6 rounded-lg hover:bg-secondary-dark transition duration-300 relative overflow-hidden">
+                        <span class="relative z-10">S'abonner</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-gray-300 py-12">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center mb-4">
+                    <div class="bg-primary text-white p-2 rounded-lg mr-3 hover:rotate-12 transition">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">SoSoDeep</span>
+                </div>
+                <p class="mb-4">"Plongez dans l'IA, avec clarté et impact"</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="200">
+                <h4 class="text-white font-bold mb-4 text-lg">Navigation</h4>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="hover:text-white transition">Accueil</a></li>
+                    <li><a href="#about" class="hover:text-white transition">À propos</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Services</a></li>
+                    <li><a href="#formations" class="hover:text-white transition">Formations</a></li>
+                    <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="300">
+                <h4 class="text-white font-bold mb-4 text-lg">Services</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition">Conseil en IA</a></li>
+                    <li><a href="#" class="hover:text-white transition">Formations</a></li>
+                    <li><a href="#" class="hover:text-white transition">Veille technologique</a></li>
+                    <li><a href="#" class="hover:text-white transition">Conférences</a></li>
+                    <li><a href="#" class="hover:text-white transition">Workshops</a></li>
+                </ul>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="400">
+                <h4 class="text-white font-bold mb-4 text-lg">Informations</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white transition">Mentions légales</a></li>
+                    <li><a href="#" class="hover:text-white transition">Politique de confidentialité</a></li>
+                    <li><a href="#" class="hover:text-white transition">CGV</a></li>
+                    <li><a href="#" class="hover:text-white transition">FAQ</a></li>
+                    <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                </ul>
+            </div>
+        </div>
         
-        backToTopButton.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        <div class="border-t border-gray-700 mt-12 pt-8 text-center" data-aos="fade-up">
+            <p>&copy; 2025 SoSoDeep. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
 
-        // Form submission (basic example)
-        const contactForm = document.querySelector('#contact form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Merci pour votre message! Nous vous contacterons bientôt.');
-                this.reset();
-            });
-        }
+<!-- Back to Top Button -->
+<button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary-dark transform hover:-translate-y-1">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
-        // Newsletter form
-        const newsletterForm = document.querySelector('section.bg-primary form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const emailInput = this.querySelector('input[type="email"]');
-                alert(`Merci pour votre inscription avec l'email: ${emailInput.value}`);
-                emailInput.value = '';
-            });
-        }
-
-        // Language switcher (basic example)
-        const languageButtons = document.querySelectorAll('.language-selector a');
-        languageButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('Fonctionnalité de changement de langue sera implémentée ici');
-            });
-        });
-    </script>
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="./script.js"></script>
 </body>
 </html>
