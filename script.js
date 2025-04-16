@@ -72,10 +72,13 @@
             });
             
             if (response.ok) {
+              setTimeout(() => {
                 statusElement.textContent = "Merci pour votre message! Nous vous contacterons bientôt.";
                 statusElement.classList.add('success');
-                form.reset();
+                this.reset();
                 grecaptcha.reset();
+              }, 1500);
+              statusElement.classList.remove('success');
             } else {
                 throw new Error('Erreur lors de l\'envoi');
             }
@@ -116,4 +119,5 @@
             statusElement.classList.add('success');
             this.reset();
         }, 1500);
+        statusElement.classList.remove('success');
     });
