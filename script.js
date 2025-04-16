@@ -37,36 +37,56 @@
         });
     });
 
-    // Contact Form Submission
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
+    // Contact Form Submission avec Formspree
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const statusElement = document.getElementById('contact-status');
-        statusElement.classList.remove('success', 'error');
+        const form = e.target;
+        const submitButton = form.querySelector('button[type="submit"]');
         
-        // Verify reCAPTCHA
-        const recaptchaResponse = grecaptcha.getResponse();
-        if (recaptchaResponse.length === 0) {
+        // Réinitialiser le statut
+        statusElement.textContent = '';
+        statusElement.className = 'form-status';
+        
+        // Vérification reCAPTCHA
+        if (grecaptcha.getResponse().length === 0) {
             statusElement.textContent = "Veuillez compléter le reCAPTCHA.";
             statusElement.classList.add('error');
             return;
         }
         
-        // Get form data
-        const formData = new FormData(this);
-        formData.append('g-recaptcha-response', recaptchaResponse);
+        // Désactiver le bouton pendant l'envoi
+        submitButton.disabled = true;
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.innerHTML = '<span class="relative z-10">Envoi en cours...</span>';
         
-        // Simulate form submission (replace with actual AJAX call)
-        statusElement.textContent = "Envoi en cours...";
-        statusElement.classList.add('success');
-        
-        // In a real implementation, you would use fetch or XMLHttpRequest to send the data to your server
-        setTimeout(() => {
-            statusElement.textContent = "Merci pour votre message! Nous vous contacterons bientôt.";
-            statusElement.classList.add('success');
-            this.reset();
-            grecaptcha.reset();
-        }, 1500);
+        try {
+            // Envoyer les données à Formspree
+            const response = await fetch('https://formspree.io/f/xzzeqrvb', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                statusElement.textContent = "Merci pour votre message! Nous vous contacterons bientôt.";
+                statusElement.classList.add('success');
+                form.reset();
+                grecaptcha.reset();
+            } else {
+                throw new Error('Erreur lors de l\'envoi');
+            }
+        } catch (error) {
+            console.error('Erreur:', error);
+            statusElement.textContent = "Une erreur s'est produite. Veuillez réessayer plus tard.";
+            statusElement.classList.add('error');
+        } finally {
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+        }
     });
 
     // Newsletter Form Submission
