@@ -1,19 +1,908 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>My static Space</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div class="card">
-			<h1>Welcome to your static Space!</h1>
-			<p>You can modify this app directly by editing <i>index.html</i> in the Files and versions tab.</p>
-			<p>
-				Also don't forget to check the
-				<a href="https://huggingface.co/docs/hub/spaces" target="_blank">Spaces documentation</a>.
-			</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoSoDeep - AI Consulting & Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',
+                        secondary: '#3B82F6',
+                        accent: '#10B981',
+                        dark: '#0F172A',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-reverse': 'float-reverse 5s ease-in-out infinite',
+                        'pulse-slow': 'pulse 5s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'float-reverse': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+        }
+        
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #3B82F6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .btn-hover-effect {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-hover-effect:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1D4ED8;
+            z-index: -1;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-hover-effect:hover:after {
+            transform: scaleY(1);
+        }
+        
+        .language-selector {
+            transition: all 0.3s ease;
+        }
+        
+        .language-selector:hover {
+            transform: translateY(-2px);
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-reverse {
+            animation: float-reverse 5s ease-in-out infinite;
+        }
+        
+        .pulse-slow {
+            animation: pulse 5s infinite;
+        }
+        
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #3B82F6, #10B981);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50" data-aos="fade-down">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="bg-primary text-white p-2 rounded-lg hover:rotate-12 transition-transform duration-300">
+                        <i class="fas fa-robot text-2xl"></i>
+                    </div>
+                    <a href="#" class="ml-3 text-2xl font-bold text-primary hover:text-primary-dark transition">SoSoDeep</a>
+                </div>
+                
+                <div class="flex items-center space-x-6">
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#home" class="nav-link font-medium hover:text-primary transition">Accueil</a>
+                        <a href="#about" class="nav-link font-medium hover:text-primary transition">À propos</a>
+                        <a href="#services" class="nav-link font-medium hover:text-primary transition">Services</a>
+                        <a href="#formations" class="nav-link font-medium hover:text-primary transition">Formations</a>
+                        <a href="#contact" class="nav-link font-medium hover:text-primary transition">Contact</a>
+                    </div>
+                    
+                    <!-- Language Selector -->
+                    <div class="language-selector relative group">
+                        <button class="flex items-center space-x-1 px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+                            <i class="fas fa-globe"></i>
+                            <span class="font-medium">FR</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition">Français</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition">English</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button id="menu-btn" class="text-gray-500 focus:outline-none hover:text-primary transition">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 font-medium hover:text-primary transition">Accueil</a>
+                <a href="#about" class="block py-2 font-medium hover:text-primary transition">À propos</a>
+                <a href="#services" class="block py-2 font-medium hover:text-primary transition">Services</a>
+                <a href="#formations" class="block py-2 font-medium hover:text-primary transition">Formations</a>
+                <a href="#contact" class="block py-2 font-medium hover:text-primary transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-20 md:py-32 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-20 left-10 w-16 h-16 rounded-full bg-white pulse-slow"></div>
+            <div class="absolute top-1/3 right-20 w-24 h-24 rounded-full bg-white pulse-slow animation-delay-1000"></div>
+            <div class="absolute bottom-20 left-1/4 w-20 h-20 rounded-full bg-white pulse-slow animation-delay-2000"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">L'Intelligence Artificielle <span class="gradient-text">à votre portée</span></h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">Conseil stratégique & formations pratiques pour transformer votre organisation grâce à l'IA.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#services" class="btn-hover-effect bg-white text-primary font-bold py-3 px-6 rounded-lg hover:text-white transition duration-300 text-center relative overflow-hidden">
+                            <span class="relative z-10">Découvrir nos offres</span>
+                        </a>
+                        <a href="#contact" class="btn-hover-effect border-2 border-white text-white font-bold py-3 px-6 rounded-lg hover:bg-white hover:text-primary transition duration-300 text-center relative overflow-hidden">
+                            <span class="relative z-10">Nous contacter</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
+                    <div class="relative">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2491/2491905.png" alt="IA Illustration" class="w-full max-w-md floating">
+                        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-accent bg-opacity-20 rounded-full -z-10 floating-reverse"></div>
+                        <div class="absolute -top-8 -right-8 w-24 h-24 bg-secondary bg-opacity-20 rounded-full -z-10 floating"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">À propos de SoSoDeep</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0" data-aos="fade-right">
+                    <div class="relative">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2491/2491935.png" alt="Team Illustration" class="w-full max-w-md mx-auto floating">
+                        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-primary bg-opacity-10 rounded-full -z-10 floating-reverse"></div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-12" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-primary mb-4">Qui sommes-nous ?</h3>
+                    <p class="text-lg mb-6 text-gray-700">SoSoDeep est une agence spécialisée dans l'accompagnement des entreprises et particuliers vers la maîtrise de l'IA. Notre équipe d'experts allie pédagogie et expertise technique pour vous guider dans votre transformation numérique.</p>
+                    
+                    <h3 class="text-2xl font-bold text-primary mb-4">Notre mission</h3>
+                    <p class="text-lg mb-6 text-gray-700">Démocratiser l'IA en la rendant concrète et applicable à tous les secteurs d'activité. Nous croyons que l'intelligence artificielle doit être accessible et bénéfique pour tous.</p>
+                    
+                    <h3 class="text-2xl font-bold text-primary mb-4">Nos valeurs</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-3 hover:rotate-12 transition">
+                                    <i class="fas fa-chalkboard-teacher text-primary"></i>
+                                </div>
+                                <h4 class="font-bold">Pédagogie</h4>
+                            </div>
+                            <p class="text-gray-600">Nous expliquons simplement des concepts complexes.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-3 hover:rotate-12 transition">
+                                    <i class="fas fa-eye text-primary"></i>
+                                </div>
+                                <h4 class="font-bold">Transparence</h4>
+                            </div>
+                            <p class="text-gray-600">Nous communiquons clairement sur nos méthodes et résultats.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-3 hover:rotate-12 transition">
+                                    <i class="fas fa-award text-primary"></i>
+                                </div>
+                                <h4 class="font-bold">Excellence</h4>
+                            </div>
+                            <p class="text-gray-600">Nous visons la qualité dans chaque prestation.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg hover:shadow-md transition" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-3 hover:rotate-12 transition">
+                                    <i class="fas fa-hands-helping text-primary"></i>
+                                </div>
+                                <h4 class="font-bold">Accompagnement</h4>
+                            </div>
+                            <p class="text-gray-600">Nous vous guidons pas à pas dans votre parcours IA.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Nos Services</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Plongez dans l'IA avec nos solutions sur mesure adaptées à vos besoins.</p>
+                <div class="w-20 h-1 bg-secondary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-6">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-full inline-block mb-4 hover:rotate-12 transition">
+                            <i class="fas fa-chess text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Conseil en stratégie IA</h3>
+                        <p class="text-gray-600 mb-4">Audit, accompagnement et mise en place de projets IA sur mesure pour votre entreprise.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Diagnostic de maturité IA</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Roadmap stratégique</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Accompagnement à la mise en œuvre</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-6">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-full inline-block mb-4 hover:rotate-12 transition">
+                            <i class="fas fa-graduation-cap text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Formation IA</h3>
+                        <p class="text-gray-600 mb-4">Initiation, perfectionnement et formations sur mesure pour vos équipes.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Formations en présentiel ou en ligne</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Programmes adaptés à tous niveaux</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Cas pratiques et mises en situation</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-6">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-full inline-block mb-4 hover:rotate-12 transition">
+                            <i class="fas fa-binoculars text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Veille technologique</h3>
+                        <p class="text-gray-600 mb-4">Restez informé des dernières innovations et tendances en IA.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Bulletins d'actualité mensuels</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Analyse des innovations sectorielles</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Alertes personnalisées</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="p-6">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-full inline-block mb-4 hover:rotate-12 transition">
+                            <i class="fas fa-users text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Conférences & Workshops</h3>
+                        <p class="text-gray-600 mb-4">Événements interactifs pour découvrir et expérimenter l'IA.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Keynotes inspirantes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Ateliers pratiques</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Hackathons et challenges</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formations Section -->
+    <section id="formations" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Nos Formations</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Des programmes adaptés à tous les niveaux pour maîtriser l'IA.</p>
+                <div class="w-20 h-1 bg-secondary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Formation 1 -->
+                <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition" data-aos="flip-up" data-aos-delay="100">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="bg-accent bg-opacity-20 text-accent text-xs font-semibold px-2.5 py-0.5 rounded">Débutant</span>
+                                <h3 class="text-xl font-bold mt-2">Initiation à l'IA</h3>
+                            </div>
+                            <div class="text-primary font-bold text-2xl">99€</div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Découvrez les fondamentaux de l'intelligence artificielle et ses applications concrètes.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-4">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>2 jours (14h)</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-500 mb-6">
+                            <i class="fas fa-laptop mr-2"></i>
+                            <span>En ligne ou présentiel</span>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Comprendre les concepts clés</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Cas d'usage sectoriels</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Ateliers pratiques</span>
+                            </li>
+                        </ul>
+                        <button class="w-full btn-hover-effect bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition duration-300 relative overflow-hidden">
+                            <span class="relative z-10">S'inscrire</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Formation 2 -->
+                <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition" data-aos="flip-up" data-aos-delay="200">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Intermédiaire</span>
+                                <h3 class="text-xl font-bold mt-2">IA pour les entreprises</h3>
+                            </div>
+                            <div class="text-primary font-bold text-2xl">499€</div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Apprenez à intégrer l'IA dans votre organisation et à en tirer le maximum de valeur.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-4">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>5 jours (35h)</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-500 mb-6">
+                            <i class="fas fa-laptop mr-2"></i>
+                            <span>En ligne ou présentiel</span>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Stratégie d'implémentation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>ROI et mesure d'impact</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Études de cas réels</span>
+                            </li>
+                        </ul>
+                        <button class="w-full btn-hover-effect bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition duration-300 relative overflow-hidden">
+                            <span class="relative z-10">S'inscrire</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Formation 3 -->
+                <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition" data-aos="flip-up" data-aos-delay="300">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">Avancé</span>
+                                <h3 class="text-xl font-bold mt-2">Développement IA</h3>
+                            </div>
+                            <div class="text-primary font-bold text-2xl">899€</div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Formation technique pour développer vos propres modèles d'intelligence artificielle.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-4">
+                            <i class="far fa-clock mr-2"></i>
+                            <span>10 jours (70h)</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-500 mb-6">
+                            <i class="fas fa-laptop mr-2"></i>
+                            <span>En ligne ou présentiel</span>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Machine Learning avancé</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Traitement du langage naturel</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span>Vision par ordinateur</span>
+                            </li>
+                        </ul>
+                        <button class="w-full btn-hover-effect bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition duration-300 relative overflow-hidden">
+                            <span class="relative z-10">S'inscrire</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" data-aos="fade-up">
+                <p class="text-lg mb-6">Vous souhaitez une formation sur mesure pour votre entreprise ?</p>
+                <a href="#contact" class="btn-hover-effect bg-secondary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary-dark transition duration-300 inline-block relative overflow-hidden">
+                    <span class="relative z-10">Demander un devis</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Ils nous font confiance</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"La formation initiation à l'IA a complètement changé notre approche des projets digitaux. L'équipe de SoSoDeep a su rendre des concepts complexes accessibles à tous."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Aïda Diop</h4>
+                            <p class="text-gray-500 text-sm">Directrice Digitale, Banque Sénégalaise</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"L'accompagnement stratégique de SoSoDeep nous a permis d'identifier 3 cas d'usage IA avec un ROI immédiat. Leur expertise sectorielle fait toute la différence."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Mamadou Ndiaye</h4>
+                            <p class="text-gray-500 text-sm">Directeur Général, AgroTech</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Nous avons fait appel à SoSoDeep pour former 50 collaborateurs. Leur approche pédagogique et les supports de formation sur mesure ont été très appréciés par nos équipes."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Fatou Bâ</h4>
+                            <p class="text-gray-500 text-sm">DRH, Groupe Santé Afrique</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Contactez-nous</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Prêt à plonger dans l'IA ? Discutons de votre projet.</p>
+                <div class="w-20 h-1 bg-secondary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2" data-aos="fade-right">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Nom complet</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Téléphone</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Sujet</label>
+                            <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                                <option value="">Sélectionnez un sujet</option>
+                                <option value="consulting">Consulting en IA</option>
+                                <option value="training">Formation en IA</option>
+                                <option value="workshop">Organiser un workshop</option>
+                                <option value="other">Autre demande</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"></textarea>
+                        </div>
+                        <button type="submit" class="btn-hover-effect bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-primary-dark transition duration-300 w-full relative overflow-hidden">
+                            <span class="relative z-10">Envoyer le message</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <div class="bg-gray-50 p-8 rounded-xl h-full">
+                        <h3 class="text-2xl font-bold text-primary mb-6">Nos coordonnées</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
+                                    <i class="fas fa-envelope text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <a href="mailto:contact@sosodeep.com" class="text-gray-600 hover:text-primary transition">contact@sosodeep.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
+                                    <i class="fas fa-phone-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Téléphone</h4>
+                                    <a href="tel:+221338765432" class="text-gray-600 hover:text-primary transition">+221 33 876 54 32</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
+                                    <i class="fas fa-map-marker-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Adresse</h4>
+                                    <p class="text-gray-600">Immeuble Liberté, Dakar Plateau, Sénégal</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start hover:bg-gray-100 p-3 rounded-lg transition">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 hover:rotate-12 transition">
+                                    <i class="fas fa-clock text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Horaires</h4>
+                                    <p class="text-gray-600">Lundi - Vendredi : 8h - 18h</p>
+                                    <p class="text-gray-600">Samedi : 9h - 13h</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-4">Suivez-nous</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 p-3 rounded-full hover:bg-primary hover:text-white transition duration-300 transform hover:-translate-y-1">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-4">Prenez rendez-vous</h4>
+                            <p class="text-gray-600 mb-4">Planifiez une consultation en ligne avec nos experts.</p>
+                            <button class="btn-hover-effect bg-secondary text-white font-bold py-2 px-4 rounded-lg hover:bg-secondary-dark transition duration-300 inline-flex items-center relative overflow-hidden">
+                                <i class="far fa-calendar-alt mr-2"></i> <span class="relative z-10">Planifier un rendez-vous</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div class="h-96 w-full" data-aos="fade-up">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.71563585696!2d-17.4346829246879!3d14.67048547591115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec17248f0c136b5%3A0x515a56bcd5af097!2sDakar%20Plateau%2C%20Senegal!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-primary text-white" data-aos="fade-up">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2">Restez informé</h3>
+                    <p class="opacity-90">Abonnez-vous à notre newsletter pour recevoir nos actualités et conseils en IA.</p>
+                </div>
+                <div class="md:w-1/2">
+                    <form class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" placeholder="Votre email" class="flex-grow px-4 py-3 rounded-lg focus:outline-none text-gray-800 transition">
+                        <button type="submit" class="btn-hover-effect bg-secondary text-white font-bold py-3 px-6 rounded-lg hover:bg-secondary-dark transition duration-300 relative overflow-hidden">
+                            <span class="relative z-10">S'abonner</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary text-white p-2 rounded-lg mr-3 hover:rotate-12 transition">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">SoSoDeep</span>
+                    </div>
+                    <p class="mb-4">"Plongez dans l'IA, avec clarté et impact"</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition transform hover:-translate-y-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="text-white font-bold mb-4 text-lg">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-white transition">Accueil</a></li>
+                        <li><a href="#about" class="hover:text-white transition">À propos</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Services</a></li>
+                        <li><a href="#formations" class="hover:text-white transition">Formations</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="text-white font-bold mb-4 text-lg">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition">Conseil en IA</a></li>
+                        <li><a href="#" class="hover:text-white transition">Formations</a></li>
+                        <li><a href="#" class="hover:text-white transition">Veille technologique</a></li>
+                        <li><a href="#" class="hover:text-white transition">Conférences</a></li>
+                        <li><a href="#" class="hover:text-white transition">Workshops</a></li>
+                    </ul>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-white font-bold mb-4 text-lg">Informations</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition">Mentions légales</a></li>
+                        <li><a href="#" class="hover:text-white transition">Politique de confidentialité</a></li>
+                        <li><a href="#" class="hover:text-white transition">CGV</a></li>
+                        <li><a href="#" class="hover:text-white transition">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center" data-aos="fade-up">
+                <p>&copy; 2025 SoSoDeep. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary-dark transform hover:-translate-y-1">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Mobile menu toggle
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Form submission (basic example)
+        const contactForm = document.querySelector('#contact form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Merci pour votre message! Nous vous contacterons bientôt.');
+                this.reset();
+            });
+        }
+
+        // Newsletter form
+        const newsletterForm = document.querySelector('section.bg-primary form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const emailInput = this.querySelector('input[type="email"]');
+                alert(`Merci pour votre inscription avec l'email: ${emailInput.value}`);
+                emailInput.value = '';
+            });
+        }
+
+        // Language switcher (basic example)
+        const languageButtons = document.querySelectorAll('.language-selector a');
+        languageButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Fonctionnalité de changement de langue sera implémentée ici');
+            });
+        });
+    </script>
+</body>
 </html>
