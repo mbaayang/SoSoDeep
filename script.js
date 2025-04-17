@@ -140,16 +140,11 @@
       submitButton.innerHTML = '<span class="relative z-10">Envoi en cours...</span>';
   
       try {
-          const response = await fetch('https://us20.api.mailchimp.com/3.0/lists/3a8e1256c9/members', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': 'apikey 7c3236fd2bdcce45cbc22617e08fc3e7-us20'
-              },
-              body: JSON.stringify({
-                  email_address: email,
-                  status: 'subscribed' // ou 'pending' pour double opt-in
-              })
+          const response = await fetch('/.netlify/functions/mailchimp', {
+            method: 'POST',
+            body: JSON.stringify({
+              email: document.getElementById('newsletter-email').value
+            })
           });
   
           const data = await response.json();
