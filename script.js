@@ -93,7 +93,7 @@
     });
 
     // Newsletter Form Submission
-    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+    /* document.getElementById('newsletter-form').addEventListener('submit', function(e) {
         e.preventDefault();
         
         const statusElement = document.getElementById('newsletter-status');
@@ -119,5 +119,53 @@
             statusElement.classList.add('success');
             this.reset();
         }, 1500);
-        statusElement.classList.remove('success');
-    });
+    }); */
+
+    document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('newsletter-email').value;
+      const statusElement = document.getElementById('newsletter-status');
+      const submitButton = e.target.querySelector('button[type="submit"]');
+
+      // Simple email validation
+      if (!email.includes('@') || !email.includes('.')) {
+          statusElement.textContent = "Veuillez entrer une adresse email valide.";
+          statusElement.classList.add('error');
+          return;
+      }
+  
+      // Désactiver le bouton pendant l'envoi
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<span class="relative z-10">Envoi en cours...</span>';
+  
+      try {
+          const response = await fetch('https://us20.api.mailchimp.com/3.0/lists/3a8e1256c9/members', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'apikey 7c3236fd2bdcce45cbc22617e08fc3e7-us20'
+              },
+              body: JSON.stringify({
+                  email_address: email,
+                  status: 'subscribed' // ou 'pending' pour double opt-in
+              })
+          });
+  
+          const data = await response.json();
+  
+          if (response.ok) {
+              statusElement.textContent = "Merci pour votre inscription !";
+              statusElement.className = 'form-status success';
+              e.target.reset();
+          } else {
+              throw new Error(data.title || "Erreur lors de l'inscription");
+          }
+      } catch (error) {
+          statusElement.textContent = error.message;
+          statusElement.className = 'form-status error';
+      } finally {
+          submitButton.disabled = false;
+          submitButton.innerHTML = '<span class="relative z-10">S\'abonner</span>';
+      }
+  });
