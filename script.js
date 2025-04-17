@@ -93,7 +93,7 @@
     });
 
     // Newsletter Form Submission
-    /* document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
         e.preventDefault();
         
         const statusElement = document.getElementById('newsletter-status');
@@ -119,9 +119,9 @@
             statusElement.classList.add('success');
             this.reset();
         }, 1500);
-    }); */
+    });
 
-    document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
+    /* document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const email = document.getElementById('newsletter-email').value;
@@ -163,4 +163,4 @@
           submitButton.disabled = false;
           submitButton.innerHTML = '<span class="relative z-10">S\'abonner</span>';
       }
-  });
+  }); */
