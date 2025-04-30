@@ -3,10 +3,15 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+            background-color: #fdf7fa;
         }
         
         .hero-gradient {
-            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            background: linear-gradient(135deg, #fbb3c1 0%, #d22871 60%, #752d6f 100%);
+        }
+
+        .hero-gradient-inverse {
+            background: linear-gradient(135deg, #752d6f 0%, #d22871 60%, #fbb3c1 100%);
         }
         
         .service-card {
@@ -37,7 +42,7 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: #3B82F6;
+            background-color: #752d6f;
             transition: width 0.3s ease;
         }
         
@@ -58,7 +63,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #1D4ED8;
+            background-color: #b81f5e;
             z-index: -1;
             transform: scaleY(0);
             transform-origin: top;
@@ -93,7 +98,7 @@
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            background-image: linear-gradient(90deg, #3B82F6, #10B981);
+            background-image: linear-gradient(90deg, #d22871, #752d6f);
         }
         
         /* Style pour le reCAPTCHA */
@@ -111,13 +116,15 @@
         }
         
         .form-status.success {
-            background-color: #D1FAE5;
-            color: #065F46;
+            background-color: rgba(233, 75, 124, 0.1);
+            color: #d22871;
             display: block;
+            border-left: 4px solid #d22871;
         }
         
         .form-status.error {
-            background-color: #FEE2E2;
-            color: #B91C1C;
+            background-color: rgba(210, 40, 113, 0.1);
+            color: #b81f5e;
             display: block;
+            border-left: 4px solid #b81f5e;
         }
